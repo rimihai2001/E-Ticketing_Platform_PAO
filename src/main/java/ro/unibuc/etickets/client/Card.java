@@ -1,6 +1,6 @@
 package ro.unibuc.etickets.client;
 
-public class Card {
+public class Card{
     private String cardNumber;
     private String ownerName;
     private String expiryDate;
@@ -41,6 +41,13 @@ public class Card {
         if (this == o) return true;
         if (!(o instanceof Card that)) return false;
         return getNumber().equals(that.getNumber()) && getOwnerName().equals(that.getOwnerName()) && getExpiryDate().equals(that.getExpiryDate());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder cn= new StringBuilder();
+        cn.append("*".repeat(cardNumber.length()));
+        return String.format("\n Card Info: \n Card Number:%s\n Owner: %s, Expires on: %s\n", cn, ownerName, expiryDate);
     }
 
 

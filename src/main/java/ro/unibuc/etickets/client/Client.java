@@ -37,7 +37,7 @@ public class Client extends Person{
     public String toString() {
         StringBuilder ps= new StringBuilder();
         ps.append("*".repeat(password.length()));
-        return super.toString()+String.format("\n User password: %s", ps);
+        return super.toString()+String.format("\n User password: %s", ps)+paymentCard.toString();
     }
 
 }

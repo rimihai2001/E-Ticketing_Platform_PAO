@@ -97,7 +97,13 @@ public class ProgramMenu {
                     String address = s.nextLine();
                     System.out.println("Password: ");
                     String password = s.nextLine();
-                    personsServices.addPerson(firstName, lastName, email, phone, address, password );
+                    System.out.println("Card Number: ");
+                    String cardN = s.nextLine();
+                    System.out.println("Owner Name: ");
+                    String ownName = s.nextLine();
+                    System.out.println("Expiry Date: ");
+                    String expDate = s.nextLine();
+                    personsServices.addPerson(firstName, lastName, email, phone, address, password, cardN, ownName, expDate );
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
