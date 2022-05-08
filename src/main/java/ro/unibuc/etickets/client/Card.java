@@ -45,9 +45,7 @@ public class Card{
 
     @Override
     public String toString() {
-        StringBuilder cn= new StringBuilder();
-        cn.append("*".repeat(cardNumber.length()));
-        return String.format("\n Card Info: \n Card Number:%s\n Owner: %s, Expires on: %s\n", cn, ownerName, expiryDate);
+        return String.format("%s,%s,%s", getOwnerName(), getNumber(), getExpiryDate());
     }
 
 

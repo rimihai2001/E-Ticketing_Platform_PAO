@@ -3,6 +3,8 @@ package ro.unibuc.etickets.locations;
 import java.util.*;
 
 public class Location {
+
+    private String locationName;
     private String country;
     private String city;
     private String address;
@@ -10,10 +12,11 @@ public class Location {
     public Location(){
 
     }
-    public Location(String country, String city, String address, String ZIP){
-        if(country.isEmpty() || city.isEmpty() || address.isEmpty()){
+    public Location(String locationName, String country, String city, String address, String ZIP){
+        if(country.isEmpty() || city.isEmpty() || address.isEmpty() || locationName.isEmpty()){
             throw new RuntimeException("Empty attributes");
         }
+        this.locationName=locationName;
         this.country=country;
         this.city=city;
         this.address=address;
@@ -50,11 +53,24 @@ public class Location {
         this.country = country;
     }
 
+    public String getName(){
+        return locationName;
+    }
+
+    public void setName(String locationName) {
+        this.locationName = locationName;
+    }
+
     public String getZIP() {
         return ZIP;
     }
 
     public void setZIP(String ZIP) {
         this.ZIP = ZIP;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s,%s,%s,%s,%s", locationName, address, city, country, ZIP);
     }
 }

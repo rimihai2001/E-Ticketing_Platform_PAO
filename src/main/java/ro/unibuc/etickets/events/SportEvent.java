@@ -45,6 +45,6 @@ public class SportEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString()+String.format("%s: %s + %s", sportName, player1, player2);
+        return super.toString()+","+String.format("%s,%s,%s", sportName, player1, player2);
     }
 }

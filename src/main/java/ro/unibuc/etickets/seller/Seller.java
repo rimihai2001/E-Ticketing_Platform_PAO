@@ -27,7 +27,6 @@ public class Seller implements Comparable<Seller>{
         this.ticketsStock = ticketsStock;
     }
 
-
     public int getSupermarketId() {
         return sellerId;
     }
@@ -92,6 +91,10 @@ public class Seller implements Comparable<Seller>{
         return ticketsStock.containsKey(ticket) && ticketsStock.get(ticket) >= quantity;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s,%s", name, addressURL);
+    }
     @Override
     public int compareTo(Seller o) {
         return this.name.compareTo(o.name);

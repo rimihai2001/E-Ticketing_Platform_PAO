@@ -9,10 +9,9 @@ import ro.unibuc.etickets.locations.Location;
 import ro.unibuc.etickets.seller.Seller;
 import ro.unibuc.etickets.services.EventsServices;
 import ro.unibuc.etickets.services.LocationsServices;
-import ro.unibuc.etickets.services.PersonsServices;
+import ro.unibuc.etickets.services.ClientsServices;
 import ro.unibuc.etickets.services.SellersServices;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -22,7 +21,7 @@ public class ProgramMenu {
 
     private EventsServices eventsServices = new EventsServices();
     private LocationsServices locationsServices = new LocationsServices();
-    private PersonsServices personsServices = new PersonsServices();
+    private ClientsServices clientsServices = new ClientsServices();
     private SellersServices sellersServices = new SellersServices();
 
 
@@ -59,7 +58,7 @@ public class ProgramMenu {
                 return option;
             }
         } catch (Exception invalid) {
-            // nothing to do, as it's handled below
+            System.out.println("Error: " + invalid.getMessage());
         }
         System.out.println("Invalid option. Try again");
         return readOption(max);
@@ -69,6 +68,8 @@ public class ProgramMenu {
         switch (option) {
             case 1:
                 try {
+                    System.out.println("Location Name:");
+                    String locationName = s.nextLine();
                     System.out.println("Country:");
                     String country = s.nextLine();
                     System.out.println("City: ");
@@ -77,7 +78,7 @@ public class ProgramMenu {
                     String address = s.nextLine();
                     System.out.println("ZIP:");
                     String ZIP = s.nextLine();
-                    locationsServices.addLocation(country, city, address, ZIP);
+                    locationsServices.addLocation(locationName, country, city, address, ZIP);
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -103,7 +104,7 @@ public class ProgramMenu {
                     String ownName = s.nextLine();
                     System.out.println("Expiry Date: ");
                     String expDate = s.nextLine();
-                    personsServices.addPerson(firstName, lastName, email, phone, address, password, cardN, ownName, expDate );
+                    clientsServices.addClient(firstName, lastName, email, phone, address, password, cardN, ownName, expDate );
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -216,7 +217,7 @@ public class ProgramMenu {
             case 7:
                 try {
                     System.out.println("-------------------------");
-                    for(Person p : personsServices.getPersons()){
+                    for(Person p : clientsServices.getClients()){
                         System.out.println(p.toString());
                     };
                     System.out.println("-------------------------");
@@ -228,7 +229,7 @@ public class ProgramMenu {
             case 8:
                 try {
                     for (Location location : locationsServices.getLocations()){
-                        System.out.println("----------------\n" + "Country:" + location.getCountry() + "\n" + "City: " + location.getCity() + "\n" + "Address: " + location.getAddress() + "\n"+ "ZIP Code: " + location.getZIP() + "\n--------------------\n") ;
+                        System.out.println("----------------\n" + "Location Name:" + location.getName() + "\n" + "Country:" + location.getCountry() + "\n" + "City: " + location.getCity() + "\n" + "Address: " + location.getAddress() + "\n"+ "ZIP Code: " + location.getZIP() + "\n--------------------\n") ;
                     };
                 }
                 catch (Exception e) {
@@ -238,13 +239,16 @@ public class ProgramMenu {
             case 9:
                 try {
                     for (Seller seller : sellersServices.getSellers()){
-                        System.out.println("----------------\n" + "Name:" + seller.getName() + "\n" + "Address: " + seller.getAddress() + "\n");
-                        System.out.println("Tickets:\n");
-                        for (Event ev: seller.getTicketsStock().keySet()) {
-                            String key = ev.toString();
-                            String value = seller.getTicketsStock().get(ev).toString();
-                            System.out.println(key + "Number of tickets at seller: " + value + "\n");
+                        System.out.println("----------------\n" + "Name:" + seller.getName() + "\n" + "URL: " + seller.getAddress() + "\n");
+                        if(seller.getTicketsStock().size()>0){
+                            System.out.println("Tickets:\n");
+                            for (Event ev: seller.getTicketsStock().keySet()) {
+                                String key = ev.toString();
+                                String value = seller.getTicketsStock().get(ev).toString();
+                                System.out.println(key + "Number of tickets at seller: " + value + "\n");
+                            }
                         }
+
                         System.out.println("----------------------------\n");
                     };
                 }

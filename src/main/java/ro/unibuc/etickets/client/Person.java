@@ -70,7 +70,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%s %s: \n Email: %s \n Phone: %s", firstName, lastName, email, phone);
+        return String.format("%s,%s,%s,%s,%s", getFirstName(), getLastName(), getEmail(), getPhone(), getAddress());
     }
 
     @Override

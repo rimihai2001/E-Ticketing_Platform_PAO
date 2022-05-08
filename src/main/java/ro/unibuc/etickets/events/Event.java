@@ -53,7 +53,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return String.format("%s: \n No. Tickets: %s \n Price: %s \n Location ID: %s \n", name, Integer.toString(numberTickets), Double.toString(price), location.getCountry());
+        return String.format("%s,%s,%s,%s", name, Integer.toString(numberTickets), Double.toString(price), location.toString());
     }
 
 

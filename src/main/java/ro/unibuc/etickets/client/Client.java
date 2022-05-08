@@ -35,9 +35,7 @@ public class Client extends Person{
 
     @Override
     public String toString() {
-        StringBuilder ps= new StringBuilder();
-        ps.append("*".repeat(password.length()));
-        return super.toString()+String.format("\n User password: %s", ps)+paymentCard.toString();
+        return super.toString()+","+String.format("%s", getPassword())+","+paymentCard.toString();
     }
 
 }

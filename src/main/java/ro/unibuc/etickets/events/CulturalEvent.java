@@ -39,6 +39,6 @@ public class CulturalEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString()+String.format("%s: Duration %s", culturalEventType, Integer.toString(showLength));
+        return super.toString()+","+String.format("%s,%s", culturalEventType, Integer.toString(showLength));
     }
 }
