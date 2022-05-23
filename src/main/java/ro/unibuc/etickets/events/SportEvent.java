@@ -3,11 +3,6 @@ package ro.unibuc.etickets.events;
 import ro.unibuc.etickets.locations.Location;
 
 public class SportEvent extends Event {
-    public enum Sport {
-        TENNIS,
-        BASKETBALL,
-        FOOTBALL
-    }
     protected Sport sportName;
     protected String player1;
     protected String player2;

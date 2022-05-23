@@ -5,11 +5,6 @@ import ro.unibuc.etickets.locations.Location;
 
 public class CulturalEvent extends Event {
 
-    public enum ShowType {
-        THEATER,
-        MOVIE,
-        OPERA
-    }
     protected ShowType culturalEventType;
     protected Integer showLength;
     public CulturalEvent(){
