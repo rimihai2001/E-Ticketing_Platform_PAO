@@ -1,5 +1,6 @@
 package ro.unibuc.etickets.menu;
 
+import ro.unibuc.etickets.client.Card;
 import ro.unibuc.etickets.client.Person;
 import ro.unibuc.etickets.events.Concert;
 import ro.unibuc.etickets.events.CulturalEvent;
@@ -42,7 +43,8 @@ public class ProgramMenu {
                     7. Show all clients
                     8. Show all locations
                     9. Show all sellers
-                    10. Delete seller
+                    10. Show all cards used
+                    11. Delete seller
                     0. Exit""");
             System.out.println("Option: ");
             int option = menu.readOption(11);
@@ -79,6 +81,8 @@ public class ProgramMenu {
                     System.out.println("ZIP:");
                     String ZIP = s.nextLine();
                     locationsServices.addLocation(locationName, country, city, address, ZIP);
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -105,6 +109,8 @@ public class ProgramMenu {
                     System.out.println("Expiry Date: ");
                     String expDate = s.nextLine();
                     clientsServices.addClient(firstName, lastName, email, phone, address, password, cardN, ownName, expDate );
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -147,6 +153,8 @@ public class ProgramMenu {
                         Event e = new SportEvent(name, noTickets, price, locations, sportsType, p1, p2);
                         eventsServices.addEvent(e);
                     }
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -173,6 +181,8 @@ public class ProgramMenu {
 
                     }
                     sellersServices.addSeller(name,addressURL,ev);
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -197,6 +207,8 @@ public class ProgramMenu {
 
                     }
                     sellersServices.modifyTicketsStock(idSeller, ev);
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -209,6 +221,8 @@ public class ProgramMenu {
                         System.out.println(ev.toString());
                     };
                     System.out.println("-------------------------");
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -221,6 +235,8 @@ public class ProgramMenu {
                         System.out.println(p.toString());
                     };
                     System.out.println("-------------------------");
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -231,6 +247,8 @@ public class ProgramMenu {
                     for (Location location : locationsServices.getLocations()){
                         System.out.println("----------------\n" + "Location Name:" + location.getName() + "\n" + "Country:" + location.getCountry() + "\n" + "City: " + location.getCity() + "\n" + "Address: " + location.getAddress() + "\n"+ "ZIP Code: " + location.getZIP() + "\n--------------------\n") ;
                     };
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -251,6 +269,8 @@ public class ProgramMenu {
 
                         System.out.println("----------------------------\n");
                     };
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
@@ -258,9 +278,25 @@ public class ProgramMenu {
                 break;
             case 10:
                 try {
+                    System.out.println("-------------------------");
+                    for(Card cardUsed : clientsServices.getCards()){
+                        System.out.println(cardUsed.toString());
+                    }
+                    System.out.println("-------------------------");
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
+                }
+                catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+                break;
+            case 11:
+                try {
                     System.out.println("Index:");
                     int index = Integer.parseInt(s.nextLine());
                     sellersServices.deleteSeller(index);
+                    System.out.println("Press Enter to go back to the menu.");
+                    String skip = s.nextLine();
                 }
                 catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());

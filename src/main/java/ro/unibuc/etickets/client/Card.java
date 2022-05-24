@@ -1,6 +1,8 @@
 package ro.unibuc.etickets.client;
 
-public class Card{
+import ro.unibuc.etickets.seller.Seller;
+
+public class Card implements Comparable<Card>{
     private String cardNumber;
     private String ownerName;
     private String expiryDate;
@@ -45,8 +47,12 @@ public class Card{
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s", getOwnerName(), getNumber(), getExpiryDate());
+        return String.format("%s,%s,%s", getNumber(), getOwnerName(), getExpiryDate());
     }
 
+    @Override
+    public int compareTo(Card o) {
+        return this.cardNumber.compareTo(o.cardNumber);
+    }
 
 }
