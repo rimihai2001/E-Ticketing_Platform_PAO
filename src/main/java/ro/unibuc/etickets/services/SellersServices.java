@@ -1,6 +1,8 @@
 package ro.unibuc.etickets.services;
 
 import ro.unibuc.etickets.events.Event;
+import ro.unibuc.etickets.repositories.EventRepository;
+import ro.unibuc.etickets.repositories.SellerRepository;
 import ro.unibuc.etickets.seller.Seller;
 import ro.unibuc.etickets.services.csv.SellerCSV;
 
@@ -12,6 +14,8 @@ public class SellersServices {
     private ArrayList<Seller> storage = new ArrayList<>();
 
     private final SellerCSV sellerCSV = SellerCSV.getInstance();
+
+    private final SellerRepository sellerRepository = new SellerRepository();
 
     private final String sellerCSVPath = "./csv/sellers.csv";
 
@@ -29,6 +33,7 @@ public class SellersServices {
         storage.add(tempSeller);
         storage.sort(Comparator.comparing(Seller::getName));
         sellerCSV.add(sellerCSVPath,tempSeller);
+        sellerRepository.addSellerDB(tempSeller);
     }
 
     public ArrayList<Seller> getSellers(){

@@ -2,6 +2,9 @@ package ro.unibuc.etickets.events;
 
 import ro.unibuc.etickets.locations.Location;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Event {
     protected String name;
     protected Integer numberTickets;
@@ -17,6 +20,12 @@ public class Event {
         this.numberTickets = numberTickets;
         this.price = price;
         this.location = location;
+    }
+
+    public Event(ResultSet result) throws SQLException {
+        this.name=result.getString("EventName");
+        this.numberTickets=result.getInt("TicketsNumber");
+        this.price=result.getDouble("Price");
     }
 
     public void setName(String name){

@@ -2,6 +2,7 @@ package ro.unibuc.etickets.services;
 
 import ro.unibuc.etickets.client.Card;
 import ro.unibuc.etickets.client.Client;
+import ro.unibuc.etickets.repositories.CardRepository;
 import ro.unibuc.etickets.services.csv.CardCSV;
 import ro.unibuc.etickets.services.csv.ClientCSV;
 
@@ -16,6 +17,8 @@ public class ClientsServices {
 
     private final ClientCSV clientCSV = ClientCSV.getInstance();
     private final CardCSV cardCSV = CardCSV.getInstance();
+
+    private final CardRepository cardRepository = new CardRepository();
 
     private final String clientCSVPath = "./csv/clients.csv";
     private final String cardCSVPath = "./csv/cards.csv";
@@ -37,6 +40,7 @@ public class ClientsServices {
         usedCards.add(tempCard);
         clientCSV.add(clientCSVPath, tempClient);
         cardCSV.add(cardCSVPath, tempCard);
+        cardRepository.addCardDB(tempCard);
     }
 
     public ArrayList<Client> getClients(){

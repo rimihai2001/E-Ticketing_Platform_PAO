@@ -2,6 +2,7 @@ package ro.unibuc.etickets.services;
 
 import ro.unibuc.etickets.events.Event;
 import ro.unibuc.etickets.locations.Location;
+import ro.unibuc.etickets.repositories.EventRepository;
 import ro.unibuc.etickets.services.csv.EventCSV;
 import ro.unibuc.etickets.services.csv.LocationCSV;
 
@@ -11,6 +12,8 @@ public class EventsServices {
     private ArrayList<Event> storage = new ArrayList<Event>();
 
     private final EventCSV eventCSV = EventCSV.getInstance();
+
+    private final EventRepository eventRepository = new EventRepository();
 
     private final String eventCSVPath = "./csv/events.csv";
 
@@ -26,6 +29,7 @@ public class EventsServices {
     public void addEvent(Event e){
         storage.add(e);
         eventCSV.add(eventCSVPath, e);
+        eventRepository.addEventDB(e);
     }
 
     public ArrayList<Event> getEvents(){

@@ -1,5 +1,7 @@
 package ro.unibuc.etickets.locations;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Location {
@@ -27,6 +29,14 @@ public class Location {
             }
         }
 
+    }
+
+    public Location(ResultSet result) throws SQLException {
+        this.locationName=result.getString("LocationName");
+        this.country=result.getString("Country");
+        this.city=result.getString("City");
+        this.address=result.getString("Address");
+        this.ZIP=result.getString("ZIP");
     }
 
     public String getAddress() {

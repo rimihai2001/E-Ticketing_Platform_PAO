@@ -2,6 +2,8 @@ package ro.unibuc.etickets.seller;
 
 import ro.unibuc.etickets.events.Event;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class Seller implements Comparable<Seller>{
@@ -25,6 +27,12 @@ public class Seller implements Comparable<Seller>{
         this.addressURL = addressURL;
         this.sellerId = ++_id;
         this.ticketsStock = ticketsStock;
+    }
+
+    public Seller(ResultSet result) throws SQLException {
+        this.name=result.getString("SellerName");
+        this.addressURL=result.getString("URL");
+        this.sellerId=++_id;
     }
 
     public int getSupermarketId() {

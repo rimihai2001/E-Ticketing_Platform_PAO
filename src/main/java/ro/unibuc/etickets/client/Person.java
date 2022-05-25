@@ -1,5 +1,7 @@
 package ro.unibuc.etickets.client;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Person {
@@ -21,6 +23,15 @@ public class Person {
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    public Person(ResultSet result) throws SQLException {
+        this.personId = ++_id;
+        this.firstName=result.getString("FirstName");
+        this.lastName=result.getString("LastName");
+        this.email=result.getString("Email");
+        this.phone=result.getString("Phone");
+        this.address=result.getString("Address");
     }
 
 
